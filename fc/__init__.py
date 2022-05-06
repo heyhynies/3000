@@ -23,16 +23,7 @@ def create_app(config_name=None):
         return render_template('index.html')
     # 加载配置
     # (Loading configuration)
-    app.config.from_object(config[config_name])
-    app.config['MAIL_DEBUG'] = True  # 开启debug，便于调试看信息 (Turn on debug for easy debugging to see information)
-    app.config['MAIL_SUPPRESS_SEND'] = False  # 发送邮件，为True则不发送 (Send email, True does not send)
-    app.config['MAIL_SERVER'] = 'smtp.qq.com'  # 邮箱服务器 (Mailbox server)
-    app.config['MAIL_PORT'] = 465  # 端口 (Port)
-    app.config['MAIL_USE_SSL'] = True  # 重要，qq邮箱需要使用SSL (Important, qq email requires SSL)
-    app.config['MAIL_USE_TLS'] = False  # 不需要使用TLS (No need to use TLS)
-    app.config['MAIL_USERNAME'] = '1528377935@qq.com'
-    app.config['MAIL_PASSWORD'] = 'zxdiiljzjncoggbj'
-    app.config['MAIL_DEFAULT_SENDER'] = '1528377935@qq.com'  # 填邮箱，默认发送者 (Fill in email, default sender)
+
 
 
     register_extensions(app)
