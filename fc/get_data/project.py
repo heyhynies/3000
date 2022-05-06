@@ -127,7 +127,7 @@ def timedTask():
 
 
 sched = BlockingScheduler()  # 初始化时指定时区 (Specify time zone at initialisation)
-sched.add_job(get_requests, "cron", hour=14, minute=35)  # 执行时间 (Execution time)
+sched.add_job(get_requests, "cron", hour=23, minute=39)  # 执行时间 (Execution time)
 sched.add_job(timedTask, "interval", seconds=5)  # 5秒钟执行一次 (Executed once every 5 seconds)
 
 
