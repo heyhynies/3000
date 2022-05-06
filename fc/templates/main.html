@@ -1,0 +1,187 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <title>Covid-19 visualisation platform</title>
+    <link rel="shortcut icon" href="{{ url_for('static',filename='images/lol.ico') }}" type="image/x-icon"/>
+
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/comon0.css') }}">
+</head>
+<body>
+
+
+<div class="back"></div>
+<div class="head">
+    <div class="ye">Haoyu Wang</div>
+    <style>
+    a{ color:#00F}
+    a:hover{ color:#F00}/* 鼠标经过悬停字体颜色 (Mouse over hover font colour)*/
+    /* css 注释说明：以上代码为设置html中超链接统一字体颜色
+    (The above code is to set a uniform font colour for hyperlinks in html)
+     */
+    .div a{ color:#090}
+    .div a:hover{ color:#090}
+    /* css注释说明：以上代码为设置html中.div对象内超链接字体颜色
+    (The above code is to set the font colour of the hyperlink in the .div object in html)
+    */
+
+    </style>
+    <div class="weather"><span id="showTime"></span></div>
+    <h1>Covid-19 visualisation platform</h1>
+</div>
+
+<script>
+    var t = null;
+    t = setTimeout(time, 1000);/*開始运行 (Start running)*/
+    function time() {
+        clearTimeout(t);/*清除定时器 (Clear Timer)*/
+        dt = new Date();
+        var y = dt.getFullYear();
+        var mt = dt.getMonth() + 1;
+        var day = dt.getDate();
+        var h = dt.getHours();
+        var m = dt.getMinutes();
+        var s = dt.getSeconds();
+        document.getElementById("showTime").innerHTML = y + "/" + mt + "/" + day + " " + h + ":" + m + ":" + s ;
+        t = setTimeout(time, 1000);
+    }
+
+
+</script>
+<div style="background:#000d4a url('../static/images/bg4.jpg') center top;" class="mainbox">
+    <ul class="clearfix">
+        <li>
+            <div class="boxall" style="height:400px;">
+                <div class="alltitle">Top five countries for new cases</div>
+                <div class="navboxall" id="echart5"></div>
+            </div>
+            <div class="boxall" style="height:260px;">
+                <div class="alltitle">New cases by country</div>
+                <div class="navboxall">
+                    <div class="wraptit">
+                        <span>Country</span><span>New cases</span><span>New Deaths</span><span>New infections added</span>
+                    </div>
+                    <div class="wrap">
+                        <ul id="heropick">
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            <div class="boxall" style="height:260px;">
+                <div class="alltitle">Top 5 countries for total cases</div>
+
+                <div class="navboxall" id="echart1"></div>
+            </div>
+        </li>
+        <li>
+            <div class="boxall" style="height:230px">
+                <div class="clearfix navboxall" style="height: 100%">
+                    <!--                            <div class="pulll_left num">-->
+                    <!--                                <div class="numbt">General information<span>(单位：元)</span></div>-->
+                    <!--                                <div class="numtxt">19382721 </div>-->
+                    <!--                            </div>-->
+                    <div class="pulll_left zhibiao">
+                        <div class="zb1"><span id="winratetop"></span>
+                            <div id="zb1"></div>
+                        </div>
+                        <div class="zb2"><span id="killtop"></span>
+                            <div id="zb2"></div>
+                        </div>
+
+                    </div>
+                    <div style="display:inline-block" class="pulll_right zhibiao ">
+                        <div class="zb3"><span id="ineyetop"></span>
+                            <div id="zb3"></div>
+                        </div>
+                        <div class="zb4"><span id="memberkdatop"></span>
+                            <div id="zb4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="boxall" style="height:420px">
+                <div class="alltitle">Global Epidemic Display Chart</div>
+                <div class="navboxall" id="echart4"></div>
+
+            </div>
+            <div class="boxall" style="height:270px">
+                <div class="alltitle">The five countries with the worst outbreaks</div>
+                <div class="navboxall" id="echart3"></div>
+            </div>
+        </li>
+        <li>
+            <div class="boxall" style="height:300px">
+                <div class="alltitle">Most restored countries</div>
+                <div class="navboxall">
+                    <table class="table1" width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tbody id="wingstop5">
+                        <tr>
+                            <th scope="col" class="toptop">Ranking</th>
+                            <th scope="col">Country</th>
+                            <th scope="col">Number of people recovered</th>
+
+                        </tr>
+                        <tr>
+                            <td><span>1</span></td>
+                            <td></td>
+                            <td><br></td>
+                            <td><br></td>
+                        </tr>
+                        <tr>
+                            <td><span>2</span></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td><span>3</span></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><span>4</span></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><span>5</span></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="boxall" style="height:310px">
+                <div class="alltitle">Top three countries in terms of number of existing consultations</div>
+                <div class="navboxall" id="echart6"></div>
+            </div>
+
+            <div class="boxall" style="height:310px">
+                <div class="alltitle">Top three countries with the highest number of deaths</div>
+                <div class="navboxall" id="echart2"></div>
+            </div>
+
+
+        </li>
+    </ul>
+
+</div>
+</div>
+
+
+<script type="text/javascript" src="{{ url_for('static',filename='js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/echarts.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/jquery.liMarquee.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/jquery.cxselect.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/get_data.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/world.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/china.js') }}"></script>
+</body>
+</html>

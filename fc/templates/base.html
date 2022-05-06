@@ -1,0 +1,103 @@
+{% from 'bootstrap/nav.html' import render_nav_item %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% block head %}
+        <title>{% block title %}{% endblock %} - Covid-19 analysis</title>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        {% block styles %}
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+            <link rel="stylesheet" href="{{ url_for('static', filename='open-iconic/font/css/open-iconic-bootstrap.css') }}">
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        {% endblock styles %}
+    {% endblock head %}
+</head>
+
+<body>
+{% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('main.index') }}">
+                <img src="{{ url_for('static', filename='favicon.ico') }}" alt="Yiqing">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+                    aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <div class="navbar-nav mr-auto">
+                    {{ render_nav_item('main.index', 'Home') }}
+                    {{ render_nav_item('main.explore', 'Explore') }}
+<!--                    <form action="{{url_for('main.explore') }}" class="form-inline my-2 my-lg-0">-->
+
+<!--                        <input type="text" name="q" class="form-control mr-sm-1" placeholder="请输入水果:" required>-->
+<!--                        <button class="btn btn-light my-2 my-sm-0" type="submit">-->
+<!--                            <span class="oi oi-magnifying-glass"></span>-->
+<!--                        </button>-->
+
+<!--                    </form>-->
+                </div>
+                <div class="navbar-nav ml-auto">
+                {% if current_user.is_authenticated %}
+                    <div class="dropdown nav-item">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false">
+                            {{ current_user.name }}<span class="caret"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" role="menu">
+                            <h6 class="dropdown-header">Logged in as {{ current_user.username }}</h6>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ url_for('auth.logout') }}">
+                                <span class="oi oi-power-standby"></span> Logout
+                            </a>
+                        </div>
+                    </div>
+                {% else %}
+                    <a class="btn btn-outline-primary" href="{{ url_for('auth.login') }}">Login</a>&nbsp;&nbsp;
+                    <a class="btn btn-primary" href="{{ url_for('auth.register') }}">Join us</a>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+<main>
+    <div class="container">
+        {% for message in get_flashed_messages(with_categories=True) %}
+            <div class="alert alert-{{ message[0] }}">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message[1] }}
+            </div>
+        {% endfor %}
+        {% block content %}{% endblock %}
+        {% block footer %}
+            <footer>
+                <p class="float-left">
+                    <small>&copy; 2022
+                        <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/how-to-avoid-catching-and-spreading-coronavirus-covid-19/" title="Written">Anti-epidemic tips </a> --
+                        <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public/when-and-how-to-use-masks?adgroupsurvey={adgroupsurvey}&gclid=Cj0KCQjw3v6SBhCsARIsACyrRAlbDRR2nTEsTyB_Dv5eSL0QMb6ZLwYRt7anpHMS9KOlbEg95ExmRXAaAtDzEALw_wcB" title="Fork me ">Wearing a face mask</a> --
+                        <a href="https://www.nhs.uk/conditions/coronavirus-covid-19/testing/" title="A  project">Timed testing</a>
+                    </small>
+                </p>
+                <p class="float-right">
+                    <small>Love and hope to spread faster than a virus.</small>
+                </p>
+            </footer>
+        {% endblock %}
+    </div>
+</main>
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    {{ moment.include_moment(local_js=url_for('static', filename='js/moment-with-locales.min.js')) }}
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock %}
+</body>
+</html>
