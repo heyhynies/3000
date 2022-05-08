@@ -98,7 +98,10 @@ def get_requests():
                                                                                                               '').replace(
             'N/A', '')
 
-        if len(Country_order) == 0 or Country_order == 'Total:':
+        not_counter=['Total:','World','Asia','Europe','South America','North America']
+        if Country_order=='USA':
+            Country_order='America'
+        if len(Country_order) == 0 or Country_order in not_counter:
             pass
         else:
             values = [Country_order, Total_cases, New_cases, Total_Detaths, New_Deaths,
@@ -121,21 +124,19 @@ def get_requests():
                     else:
                         writer.writerow(values)
 
+
 def timedTask():
     print(datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3])
 
 
-
 sched = BlockingScheduler()  # 初始化时指定时区 (Specify time zone at initialisation)
-sched.add_job(get_requests, "cron", hour=1, minute=20)  # 执行时间 (Execution time)
+sched.add_job(get_requests, "cron", hour=10, minute=44)  # 执行时间 (Execution time)
 sched.add_job(timedTask, "interval", seconds=5)  # 5秒钟执行一次 (Executed once every 5 seconds)
-
-
 
 
 def main():
     sched.start()
-
+    #get_requests()
 
 
 if __name__ == '__main__':

@@ -465,6 +465,68 @@ function heropick60() {
          }
     })
 }
+function round(elm,data1,data2,clolr,str1,str2,str3) {
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById(elm));
+	    var v2=data2//胜利
+		var v1=data1//战败
+		var v3=v1+v2//总消费
+        option = {
+            tooltip: {
+                trigger: 'item',
+            },
+            series: [{
+
+                type: 'pie',
+                radius: ['60%', '70%'],
+                color:clolr,
+                label: {
+                    normal: {
+                    position: 'center'
+                    }
+                },
+            data: [{
+                value: v2,
+                name: str1,
+                label: {
+                    normal: {
+                        formatter: v2 +'',
+                        textStyle: {
+                            fontSize: 20,
+                            color:'#fff',
+                        }
+                    }
+                }
+            }, {
+                value: v1,
+                name: str2,
+                label: {
+                    normal: {
+                        formatter : function (params){
+                            return str3
+                        },
+                        textStyle: {
+                            color: '#aaa',
+                            fontSize: 12
+                        }
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: 'rgba(255,255,255,.2)'
+                    },
+                    emphasis: {
+                        color: '#fff'
+                    }
+                },
+            }]
+            }]
+        };
+        myChart.setOption(option);
+        window.addEventListener("resize",function(){
+        myChart.resize();
+        });
+    }
 function homedata() {
     $.ajax({
         url:'/data/get_three',
@@ -479,17 +541,17 @@ function homedata() {
             $("#winratetop").append(homename[0]+"<br>Most deaths");
             $("#killtop").append(homename[1]+"<br>Most recovered");
             $("#ineyetop").append(homename[2]+"<br>Most diagnosed");
-            $("#memberkdatop").append(homename[3]+"<br>Most available");
+            $("#memberkdatop").append(homename[3]+"<br>Highest number of cases available");
 
-            round('zb1',data1[0],data1[0],'Most deaths');
-	        round('zb2',data1[1],data1[1],'Most recovered');
-	        round('zb3',data1[2],data1[2],'Most diagnosed');
-            round('zb4',data1[3],data1[3],'Most available');
+            round('zb1',data1[0],data1[0],'#37A2DA');
+            round('zb2',data1[1],data1[1],'#32C5E9');
+            round('zb3',data1[2],data1[2],'#67E0E3');
+               round('zb4',data1[3],data1[3],'#9FE6B8');
 
         },
         // error:function (msg) {
         //     console.log(msg);
-        //     alert('A system error has occurred!');
+        //     alert('系统发生错误!');
         // }
     });
 
