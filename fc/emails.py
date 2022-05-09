@@ -19,11 +19,11 @@ def send_mail(to, subject, template, **kwargs):
     thr.start()
 
     # msg = Message(subject='Hello World',
-    #               # sender="xxx@qq.com",  # 需要使用默认发送者则不用填
-    #                                         (If you want to use the default sender, you do not need to fill in)
+    #               # sender="xxx@qq.com",
+    #                                         If you want to use the default sender, you do not need to fill in
     #               recipients=['1528377935@qq.com'])
-    # 邮件内容会以文本和html两种格式呈现，而你能看到哪种格式取决于你的邮件客户端。
-    # (The content of the email will be presented in both text and html formats,
+
+    # The content of the email will be presented in both text and html formats,
     # and which format you can see depends on your email client.)
     # msg.body = 'sended by flask-email'
     # msg.html = '<b>Testing Flask for sending emails<b>'

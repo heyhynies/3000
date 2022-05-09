@@ -10,8 +10,8 @@ from fc.settings import Operations
 from fc.utils import generate_token, validate_token
 
 
-# 子类注册
-# (Subclass registration)
+
+# Subclass registration
 auth_bp = Blueprint('auth', __name__)
 
 @auth_bp.route('/login', methods=['GET', 'POST'])

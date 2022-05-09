@@ -22,11 +22,11 @@ headers = {
 
 
 def get_requests():
-    # 发送请求
-    # (Send request)
+
+    # Send request
     html = requests.get('https://www.worldometers.info/coronavirus/', headers=headers).text
-    # 解析请求
-    # (Parsing requests)
+
+    # Parsing requests
     data = etree.HTML(html)
     maincounters = data.xpath('//div[@id="maincounter-wrap"]')
     emotion_one = './data.csv'
@@ -129,9 +129,9 @@ def timedTask():
     print(datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3])
 
 
-sched = BlockingScheduler()  # 初始化时指定时区 (Specify time zone at initialisation)
-sched.add_job(get_requests, "cron", hour=10, minute=44)  # 执行时间 (Execution time)
-sched.add_job(timedTask, "interval", seconds=5)  # 5秒钟执行一次 (Executed once every 5 seconds)
+sched = BlockingScheduler()  # Specify time zone at initialisation
+sched.add_job(get_requests, "cron", hour=10, minute=44)  # Execution time
+sched.add_job(timedTask, "interval", seconds=5)  # Executed once every 5 seconds
 
 
 def main():

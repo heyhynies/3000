@@ -6,7 +6,7 @@ from wtforms import ValidationError
 from wtforms.validators import DataRequired, Length, Email, EqualTo, Regexp
 from fc.models import User
 
-# 登陆的校验
+
 # (Sub Category Registration)
 
 class LoginForm(FlaskForm):

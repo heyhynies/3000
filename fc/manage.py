@@ -10,7 +10,7 @@ from fc import create_app
 import shutil
 
 app = create_app()
-# 运行主文件
+
 # (Run the master file)
 if __name__ == '__main__':
 

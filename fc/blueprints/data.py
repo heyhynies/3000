@@ -54,13 +54,13 @@ def get_three():
     Total_Detaths = re_df[re_df['Total_Detaths'] == re_df['Total_Detaths'].max()]
     Total_Recovered = re_df[re_df['Total_Recovered'] == re_df['Total_Recovered'].max()]
     Active_cases = re_df[re_df['Active_cases'] == re_df['Active_cases'].max()]
-    # 死亡最少 (Fewest deaths)
+    # Fewest deaths
     name_1 = Total_cases['Country_order'].values[0]
-    # 恢复最多 (Most recovered)
+    # Most recovered
     name_2 = Total_Detaths['Country_order'].values[0]
-    # 确诊最多 (Most diagnosed)
+    # Most diagnosed
     name_3 = Total_Recovered['Country_order'].values[0]
-    # 感染最多 (Most infected)
+    # Most infected
     name_4 = Active_cases['Country_order'].values[0]
 
     data_1 = Total_cases['Total_cases'].values[0]
@@ -137,7 +137,7 @@ def get_six():
     print(info_list)
     return json.dumps(info_list)
 
-# 恢复前五
+# Recovery Top 5
 @data_bp.route('/get_seven', methods=['GET', 'POST'])
 def get_seven():
     result = df.sort_values(by=['New_Recovered', 'Country_order'], ascending=False)[:5][

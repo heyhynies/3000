@@ -10,8 +10,8 @@ from fc.extensions import bootstrap, db, login_manager, mail, moment
 from fc.models import User
 from fc.settings import config
 
-# 初始化文件
-# (Initialization file)
+
+# Initialization file
 def create_app(config_name=None):
     if config_name is None:
         config_name = os.getenv('FLASK_CONFIG', 'development')
@@ -21,18 +21,18 @@ def create_app(config_name=None):
     @app.route('/')
     def index():
         return render_template('index.html')
-    # 加载配置
-    # (Loading configuration)
+
+    # Loading configuration
     app.config.from_object(config[config_name])
-    app.config['MAIL_DEBUG'] = True  # 开启debug，便于调试看信息 (Turn on debug for easy debugging to see information)
-    app.config['MAIL_SUPPRESS_SEND'] = False  # 发送邮件，为True则不发送 (Send email, True does not send)
-    app.config['MAIL_SERVER'] = 'smtp.qq.com'  # 邮箱服务器 (Mailbox server)
-    app.config['MAIL_PORT'] = 465  # 端口 (Port)
-    app.config['MAIL_USE_SSL'] = True  # 重要，qq邮箱需要使用SSL (Important, qq email requires SSL)
-    app.config['MAIL_USE_TLS'] = False  # 不需要使用TLS (No need to use TLS)
+    app.config['MAIL_DEBUG'] = True  # Turn on debug for easy debugging to see information
+    app.config['MAIL_SUPPRESS_SEND'] = False  # Send email, True does not send
+    app.config['MAIL_SERVER'] = 'smtp.qq.com'  # Mailbox server
+    app.config['MAIL_PORT'] = 465  # Port
+    app.config['MAIL_USE_SSL'] = True  # Important, qq email requires SSL
+    app.config['MAIL_USE_TLS'] = False  # No need to use TLS
     app.config['MAIL_USERNAME'] = '1528377935@qq.com'
     app.config['MAIL_PASSWORD'] = 'zxdiiljzjncoggbj'
-    app.config['MAIL_DEFAULT_SENDER'] = '1528377935@qq.com'  # 填邮箱，默认发送者 (Fill in email, default sender)
+    app.config['MAIL_DEFAULT_SENDER'] = '1528377935@qq.com'  # Fill in email, default sender
 
 
     register_extensions(app)
@@ -46,26 +46,26 @@ def create_app(config_name=None):
 
 
 def register_extensions(app):
-    # 前后端连接器
-    # (Front and rear end connectors)
+
+    # Front and rear end connectors
     bootstrap.init_app(app)
-    # 数据库连接器
-    # (Database connectors)
+
+    # Database connectors
     db.init_app(app)
-    # 登陆管里连接器
-    # (Landing tube connectors)
+
+    # Landing tube connectors
     login_manager.init_app(app)
-    # 邮箱连接器
-    # (Mailbox connectors)
+
+    # Mailbox connectors
     mail.init_app(app)
-    # 状态连接器
-    # (Status connectors)
+
+    # Status connectors
     moment.init_app(app)
 
 
 def register_blueprints(app):
-    # 连接的定义
-    # (Definition of connection)
+
+    # Definition of connection
     app.register_blueprint(main_bp, url_prefix='/main')
     app.register_blueprint(user_bp, url_prefix='/user')
     app.register_blueprint(auth_bp, url_prefix='/auth')

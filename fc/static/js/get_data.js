@@ -13,8 +13,8 @@ $(function () {
 	wingstop5();
 
 function echarts_1() {
-        // 基于准备好的dom，初始化echarts实例
-        // (Initialize the echarts instance based on the prepared dom)
+
+        // Initialize the echarts instance based on the prepared dom
         var myChart = echarts.init(document.getElementById('echart1'));
          $.ajax({
             url:'/data/get_fore',
@@ -86,7 +86,7 @@ function echarts_1() {
     }
 
 function echarts_2() {
-        // 基于准备好的dom，初始化echarts实例
+
         // (Initialize the echarts instance based on the prepared dom)
         var myChart = echarts.init(document.getElementById('echart2'));
          $.ajax({
@@ -116,28 +116,30 @@ function echarts_2() {
                 name: '',
 				color: ['#c9c862', '#c98b62', '#c962b9','#c96262'],
                 type: 'pie',
-                //起始角度，支持范围[0, 360]
-                //(Start angle, support range [0, 360])
+
+                //Start angle, support range [0, 360]
                 startAngle: 0,
-                //饼图的半径，数组的第一项是内半径，第二项是外半径
-                // (The radius of the pie chart, the first item of the array is the inner radius and the second item is the outer radius)
+
+                // The radius of the pie chart, the first item of the array is the inner radius and the second item is the outer radius
                 radius : [30, 70],
                  center : ['35%', '60%'],
 
-                //是否展示成南丁格尔图，通过半径区分数据大小。可选择两种模式：
-                // (Whether to display as a Nightingale chart, distinguishing data size by radius. Two modes can be selected.)
-                // 'radius' 面积展现数据的百分比，半径展现数据的大小。
-                // ('radius' The area shows the percentage of the data, the radius shows the size of the data.)
-                // 'area' 所有扇区面积相同，仅通过半径展现数据大小
-                // ('area' All sectors have the same area, only the data size is shown by radius)
+
+                // Whether to display as a Nightingale chart, distinguishing data size by radius. Two modes can be selected.
+
+                // 'radius' The area shows the percentage of the data, the radius shows the size of the data.
+
+                // 'area' All sectors have the same area, only the data size is shown by radius
+
                 roseType: 'area',
-                //是否启用防止标签重叠策略，默认开启，圆环图这个例子中需要强制所有标签放在中心位置，可以将该值设为 false。
-                //Whether or not to enable the policy of preventing overlapping labels, the default is on, in the case of the circle diagram you need to force all labels to be centred, set this value to false.
+
+                // Whether or not to enable the policy of preventing overlapping labels, the default is on, in the case of the circle diagram you need to force all labels to be centred, set this value to false.
+
                 avoidLabelOverlap: false,
                 label: {
                     normal: {
                         show: true,
-                      //  formatter: '{c}辆'
+                      //  formatter: '{c}'
                     },
                     emphasis: {
                         show: true
@@ -157,7 +159,7 @@ function echarts_2() {
             }]
         };
 
-                // 使用刚指定的配置项和数据显示图表。
+
                 // The graphs are displayed using the configuration items and data just specified.
                 myChart.setOption(option);
 
@@ -169,7 +171,7 @@ function echarts_2() {
         });
     }
 function echarts_3() {
-        // 基于准备好的dom，初始化echarts实例
+
         // Initialize the echarts instance based on the prepared dom
         var myChart = echarts.init(document.getElementById('echart3'));
         var lpl = {};
@@ -214,7 +216,6 @@ function echarts_3() {
     }
 
 function echarts_4() {
-    // 基于准备好的dom，初始化echarts实例
     // Initialize the echarts instance based on the prepared dom
     var myChart = echarts.init(document.getElementById('echart4'));
     var lpl = {};
@@ -295,8 +296,8 @@ function echarts_5() {
             myChart.setOption({
                 tooltip: {
                     trigger: 'axis',
-                    axisPointer: {            // 坐标轴指示器，坐标轴触发有效 (Coordinate axis indicator, axis trigger active)
-                type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow' (Default is straight, optional is: 'line' | 'shadow')
+                    axisPointer: {            // Coordinate axis indicator, axis trigger active
+                type: 'shadow'        // Default is straight, optional is: 'line' | 'shadow'
             }
         },
 
@@ -308,12 +309,12 @@ function echarts_5() {
         },
         xAxis: {
             type: 'value',
-            axisLine: {lineStyle: {color: 'rgba(255,255,255,1)'}},//左线色 (Left line colour)
+            axisLine: {lineStyle: {color: 'rgba(255,255,255,1)'}},//Left line colour
         },
         yAxis: {
             type: 'category',
-            axisLine: {lineStyle: {color: 'rgba(255,255,255,1)'}},//左线色 (right line colour)
-            splitLine: {show:true,lineStyle: {color:"rgba(255,255,255,.1)"}},//x轴线 (x-axis line)
+            axisLine: {lineStyle: {color: 'rgba(255,255,255,1)'}},//right line colour
+            splitLine: {show:true,lineStyle: {color:"rgba(255,255,255,.1)"}},//x-axis line
             data: lpl.name
         },
         series: [
@@ -340,14 +341,12 @@ function echarts_5() {
         //     alert('A system error has occurred! Personal Data Stacking Chart');
         // }
     });
-        // 使用刚指定的配置项和数据显示图表。
         // The graphs are displayed using the configuration items and data just specified.
         window.addEventListener("resize",function(){
             myChart.resize();
         });
     }
 function echarts_6() {
-        // 基于准备好的dom，初始化echarts实例
         // Initialize the echarts instance based on the prepared dom
         var myChart = echarts.init(document.getElementById('echart6'));
          $.ajax({
@@ -393,7 +392,7 @@ function echarts_6() {
                 },
   ]
 };
-                // 使用刚指定的配置项和数据显示图表。
+
                 // The graphs are displayed using the configuration items and data just specified.
                 myChart.setOption(option);
 
@@ -454,9 +453,9 @@ function heropick60() {
                 $("#heropick").append("<li><p><span>"+ item +"</span><span>"+outcount[i]+"</span><span>"+picknum[i]+"</span><span>"+winrate[i]+"</span></p></li>");
             });
             $('.wrap,.adduser').liMarquee({
-                direction: 'up',/*身上滚动 (Rolling on)*/
-                runshort: false,/*内容不足时不滚动 (No scrolling when there is not enough content)*/
-                scrollamount: 20/*速度 (Speed)*/
+                direction: 'up',/*Rolling on*/
+                runshort: false,/*No scrolling when there is not enough content*/
+                scrollamount: 20/*Speed*/
             });
         },
          error:function (msg) {
@@ -466,11 +465,11 @@ function heropick60() {
     })
 }
 function round(elm,data1,data2,clolr,str1,str2,str3) {
-        // 基于准备好的dom，初始化echarts实例
+        // Initialize the echarts instance based on the prepared dom
         var myChart = echarts.init(document.getElementById(elm));
-	    var v2=data2//胜利
-		var v1=data1//战败
-		var v3=v1+v2//总消费
+	    var v2=data2
+		var v1=data1
+		var v3=v1+v2
         option = {
             tooltip: {
                 trigger: 'item',
@@ -551,7 +550,7 @@ function homedata() {
         },
         // error:function (msg) {
         //     console.log(msg);
-        //     alert('系统发生错误!');
+        //     alert('A system error has occurred!');
         // }
     });
 
